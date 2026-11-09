@@ -1,16 +1,30 @@
-# React + Vite
+# Renewless web
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Static website: plain HTML and CSS, no build step. Everything served lives in `public/`.
 
-Currently, two official plugins are available:
+| Path | File |
+|---|---|
+| `/` | `public/index.html` (landing) |
+| `/privacy/` | `public/privacy/index.html` |
+| `/terms/` | `public/terms/index.html` |
+| `/delete-account/` | `public/delete-account/index.html` (Google Play deletion page) |
+| `/support/` | `public/support/index.html` |
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Shared styles: `public/styles.css` (tokens from `docs/design-system.md`). Header and footer are repeated in each page; change all five together.
 
-## React Compiler
+Run locally:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```sh
+python3 -m http.server 8080 -d public
+```
 
-## Expanding the Oxlint configuration
+Then open http://localhost:8080. Deploy by uploading `public/` to any static host.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Before publishing (once the app is live in both stores):
+
+- Replace `APP_STORE_ID` in `public/index.html` with the numeric Apple ID (App Store Connect > App Information). Google Play already links to `com.renewless`.
+- Swap the two hand-made store badges in `public/index.html` (hero and final CTA) for the official artwork. Apple and Google both require it: App Store badge from https://tools.applemarketingtools.com, Google Play badge from https://play.google.com/intl/en_us/badges/.
+- Make `og:image` absolute (`https://<domain>/og.png`) and add `sitemap.xml`.
+- Add the QR code (desktop only) pointing to `https://<domain>/get/`, a page that sends iPhone to the App Store and Android to Google Play.
+
+`docs` links to `../Renewless/docs`, the shared product docs.

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#151719">
+  <meta name="description" content="How Renewless protects your account, your Gmail access and your data, and the providers that help run it.">
+  <title>Security · Renewless</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <!-- Facts from Renewless/docs/backend-plan.md and api-mobile-contract.md. Only state what the backend does; keep in sync. -->
+  <header class="bar">
+    <a href="/" class="wordmark"><img src="/favicon.svg" alt="" width="28" height="28">Renewless</a>
+  </header>
+
+  <main class="doc">
+    <h1>Security</h1>
+    <p class="updated">Last updated 10 November 2026</p>
+
+    <p>Renewless reads billing emails and stores subscription details, so protecting that data is part of the product. This page explains how. For what we collect and why, see the <a href="/privacy/">Privacy Policy</a>.</p>
+
+    <h2>Gmail access</h2>
+    <ul>
+      <li>Renewless asks Google only for <strong>read-only</strong> access (<code>gmail.readonly</code>). It cannot send, change or delete mail.</li>
+      <li>It searches for billing emails only, and keeps receipt details and attachments, never the full email.</li>
+      <li>Your Gmail access token is stored <strong>encrypted (AES-256-GCM)</strong> on our server and never sent to the app.</li>
+      <li>Disconnecting an inbox revokes the Google grant and deletes the stored token. You can also remove access from your <a href="https://myaccount.google.com/permissions">Google account</a>.</li>
+    </ul>
+
+    <h2>Your account</h2>
+    <ul>
+      <li>Passwords are stored only as a hash.</li>
+      <li>Sign-in and reset codes are stored hashed and expire after 5 minutes.</li>
+      <li>Session tokens are stored only as a SHA-256 hash, one session per device. A session ends after 90 days without use, or when you sign out.</li>
+      <li>Google and Apple sign-in tokens are verified on our server.</li>
+    </ul>
+
+    <h2>Files and AI</h2>
+    <ul>
+      <li>Receipt attachments are kept in private storage that only the Renewless server can read.</li>
+      <li>Uploads to AI chat are checked by their file contents, not just their name, and are deleted within 1 hour of being read.</li>
+      <li>Google Gemini processes billing emails and AI chat messages on a paid plan that does not use them to train AI models. AI chat asks for your consent first.</li>
+    </ul>
+
+    <h2>In transit and on our servers</h2>
+    <ul>
+      <li>All traffic between the app and our servers is encrypted with HTTPS.</li>
+      <li>Every request checks that the data belongs to the signed-in account.</li>
+      <li>Deleting your account deletes all your data at once. Backup copies are removed within 30 days.</li>
+    </ul>
+
+    <h2>Providers we use</h2>
+    <p>These companies process data on our behalf, only to run Renewless:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Provider</th><th>What for</th><th>Data</th></tr></thead>
+        <tbody>
+          <tr><td>Google Cloud</td><td>Servers and database</td><td>Account and subscription data</td></tr>
+          <tr><td>Firebase (Google)</td><td>File storage and push notifications</td><td>Receipt attachments, notification tokens</td></tr>
+          <tr><td>Google Gemini API</td><td>Reading billing emails and AI chat</td><td>Relevant email text, chat messages and uploads</td></tr>
+          <tr><td>Apple Push Notification service</td><td>Reminders on iPhone</td><td>Notification token and reminder text</td></tr>
+          <tr><td>Google (Gmail)</td><td>Sign-up and reset codes, sent from info.renewless@gmail.com</td><td>Email address and code</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Report a security issue</h2>
+    <p>Found a vulnerability? Email <a href="mailto:info.renewless@gmail.com?subject=Security%20report">info.renewless@gmail.com</a> with the subject <strong>Security report</strong>. Please give us time to fix it before sharing it publicly.</p>
+  </main>
+
+  <footer>
+    <nav aria-label="Legal and support">
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/security/">Security</a>
+      <a href="/delete-account/">Delete account</a>
+      <a href="/support/">Support</a>
+    </nav>
+    <a href="mailto:info.renewless@gmail.com">info.renewless@gmail.com</a>
+  </footer>
+</body>
+</html>
