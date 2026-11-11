@@ -20,7 +20,7 @@
 
   <main class="doc">
     <h1>Security</h1>
-    <p class="updated">Last updated 10 November 2026</p>
+    <p class="updated">Last updated 11 November 2026</p>
 
     <p>Renewless reads billing emails and stores subscription details, so protecting that data is part of the product. This page explains how. For what we collect and why, see the <a href="/privacy/">Privacy Policy</a>.</p>
 
@@ -29,7 +29,7 @@
       <li>Renewless asks Google only for <strong>read-only</strong> access (<code>gmail.readonly</code>). It cannot send, change or delete mail.</li>
       <li>It searches for billing emails only, and keeps receipt details and attachments, never the full email.</li>
       <li>Your Gmail access token is stored <strong>encrypted (AES-256-GCM)</strong> on our server and never sent to the app.</li>
-      <li>Disconnecting an inbox revokes the Google grant and deletes the stored token. You can also remove access from your <a href="https://myaccount.google.com/permissions">Google account</a>.</li>
+      <li>Disconnecting an inbox stops scanning and asks Google to revoke the grant. The stored token is deleted once Google confirms; if it does not, the token stays encrypted and is never used while the inbox is disconnected. You can also remove access from your <a href="https://myaccount.google.com/permissions">Google account</a>.</li>
     </ul>
 
     <h2>Your account</h2>
