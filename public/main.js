@@ -50,3 +50,44 @@ if (!reduce && matchMedia('(hover: hover) and (pointer: fine)').matches) {
     el.addEventListener('mouseleave', () => { el.style.transform = '' })
   }
 }
+
+// Hero demo: two taps walk through the real onboarding screens
+const demo = document.querySelector('.demo')
+if (demo) {
+  const shots = [...demo.querySelectorAll('img')]
+  const tap = demo.querySelector('.tap')
+  // screen index, where the tap target sits (% of the screenshot), its label, or ms before moving on
+  const steps = [
+    { tap: [80.7, 5.6], label: 'Connect Gmail (demo)', hint: 'Tap to try' },
+    { wait: 2600 },
+    { tap: [86.5, 5.2], label: 'Save subscriptions (demo)', hint: 'Save them' },
+    { wait: 2400 },
+    { replay: true },
+  ]
+  let timer, refocus = false
+  const show = i => {
+    clearTimeout(timer)
+    const step = steps[i]
+    shots.forEach((img, n) => { img.classList.toggle('on', n === i); img.setAttribute('aria-hidden', n !== i) })
+    tap.hidden = Boolean(step.wait)
+    tap.classList.toggle('replay', Boolean(step.replay))
+    tap.textContent = step.replay ? 'Replay' : ''
+    if (step.tap) {
+      tap.style.setProperty('--top', step.tap[0] + '%')
+      tap.style.setProperty('--h', step.tap[1] + '%')
+      tap.dataset.hint = step.hint
+      tap.setAttribute('aria-label', step.label)
+    } else if (step.replay) tap.setAttribute('aria-label', 'Replay the demo')
+    if (step.wait) timer = setTimeout(() => show(i + 1), reduce ? 800 : step.wait)
+    // keyboard users keep their place while the button hides during a wait
+    else if (refocus) tap.focus({ preventScroll: true })
+    demo.dataset.step = i
+  }
+  tap.addEventListener('click', () => {
+    const i = Number(demo.dataset.step)
+    refocus = document.activeElement === tap
+    show(steps[i].replay ? 0 : i + 1)
+  })
+  tap.classList.add('ready')
+  show(0)
+}

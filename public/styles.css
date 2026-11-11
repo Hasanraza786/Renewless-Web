@@ -187,6 +187,8 @@ section { padding: 96px 0; scroll-margin-top: 64px; }
 .hero-art .device { position: absolute; }
 .hero-art .back { width: 250px; left: 2%; top: 80px; rotate: -9deg; opacity: .7; }
 .hero-art .front { right: 8%; top: 0; animation: float 6s ease-in-out infinite; }
+/* frames crossfade through opacity: keep the back phone from showing through */
+.hero-art .front.stack { background: var(--bg); }
 .hero-art .back::after { display: none; }
 
 .notif {
@@ -209,7 +211,6 @@ section { padding: 96px 0; scroll-margin-top: 64px; }
 .notif span { color: var(--secondary); }
 .notif small { display: block; color: var(--secondary); font-size: 10px; letter-spacing: .04em; }
 .hero-art .n1 { left: 0; top: 28px; animation: float 5s ease-in-out infinite .6s; }
-.hero-art .n2 { right: 0; bottom: 70px; animation: float 5.5s ease-in-out infinite 1.4s; }
 
 .loop-mascot { position: absolute; left: 20%; bottom: 0; width: 92px; height: 92px; z-index: 3; }
 .loop-mascot .eye { transform-box: fill-box; transform-origin: center; animation: eye-blink 5s infinite; }
@@ -413,6 +414,7 @@ section { padding: 96px 0; scroll-margin-top: 64px; }
   .hero-art .back { width: 190px; left: 0; }
   .notif { width: 236px; }
   .loop-mascot { display: none; }
+  .hero-art .n1 { display: none; } /* would cover the demo screen on a phone */
   .device { width: 240px; }
 }
 
@@ -429,3 +431,30 @@ section { padding: 96px 0; scroll-margin-top: 64px; }
 .qr img { border-radius: 12px; background: #fff; padding: 8px; box-sizing: content-box; }
 .qr p { max-width: 14em; font-size: 15px; }
 @media (hover: none), (max-width: 900px) { .qr { display: none; } }
+
+/* ---------- Hero tap-through demo (main.js sets the step) ---------- */
+.demo img { opacity: 0; transition: opacity .45s var(--ease); }
+.demo img.on { opacity: 1; }
+.tap {
+  position: absolute; z-index: 2; left: 7.5%; width: 85%; top: var(--top, 80.7%); height: var(--h, 5.6%);
+  border: 0; border-radius: 999px; background: transparent; cursor: pointer; padding: 0;
+  animation: tap-pulse 1.6s ease-out infinite;
+}
+.tap:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+.tap[hidden] { display: none; }
+.tap::before {
+  content: attr(data-hint); position: absolute; left: 50%; bottom: calc(100% + 10px); translate: -50% 0;
+  white-space: nowrap; background: var(--accent); color: var(--on-accent); font: 500 13px/1 Raleway, sans-serif;
+  padding: 8px 12px; border-radius: 999px; box-shadow: 0 6px 20px rgba(0, 0, 0, .4);
+  animation: hint-bob 1.6s ease-in-out infinite;
+}
+.tap::after {
+  content: ""; position: absolute; left: 50%; bottom: calc(100% + 4px); translate: -50% 0;
+  border: 6px solid transparent; border-top-color: var(--accent); border-bottom: 0;
+  animation: hint-bob 1.6s ease-in-out infinite;
+}
+.tap.replay { left: 50%; width: auto; translate: -50% 0; top: auto; bottom: 14%; height: auto; padding: 10px 18px; background: var(--accent); color: var(--on-accent); font: 500 14px/1 Raleway, sans-serif; animation: none; }
+.tap.replay::before, .tap.replay::after { display: none; }
+.js .tap:not(.ready) { display: none; }
+@keyframes tap-pulse { 0% { box-shadow: 0 0 0 0 rgba(185, 229, 140, .7); } 100% { box-shadow: 0 0 0 14px rgba(185, 229, 140, 0); } }
+@keyframes hint-bob { 50% { transform: translateY(-4px); } }
