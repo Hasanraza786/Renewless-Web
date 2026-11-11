@@ -33,8 +33,7 @@
   <script>if (/\.(web\.app|firebaseapp\.com)$/.test(location.hostname)) location.replace('https://renewlessapp.com' + location.pathname + location.search + location.hash)</script>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preload" href="/fonts/Raleway-Medium.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="preload" href="/screens/connect-inbox.jpg" as="image">
-  <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/styles.css">
   <script>document.documentElement.classList.add('js')</script>
   <script src="/main.js" defer></script>
 </head>
@@ -58,36 +57,81 @@
     <!-- Hero -->
     <section class="hero">
       <div class="wrap">
-        <div data-reveal>
-          <span class="eyebrow">Free. No bank login. No typing.</span>
-          <h1>Connect Gmail. <em>See every subscription.</em></h1>
-          <p class="hero-sub">Renewless reads your billing emails and lists your subscriptions and free trials for you. Then it reminds you before anything charges.</p>
-          <ul class="checks">
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b9e58c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>One Google tap, no sign-up form</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b9e58c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Never asks for your bank login</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b9e58c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Not in Gmail? Tell Loop, or snap a photo</li>
-          </ul>
-          <div class="badges">
+      <div class="hero-top">
+      <div class="hero-head">
+        <p class="kicker"><span class="dot"></span>Coming soon to iPhone and Android</p>
+        <h1><span class="w" style="--i:0">Connect</span> <span class="w" style="--i:1">Gmail.</span> <em><span class="w" style="--i:2">See</span> <span class="w" style="--i:3">every</span> <span class="w" style="--i:4">subscription.</span></em></h1>
+        <p class="hero-sub">One tap on Connect Gmail and Renewless finds every subscription and free trial in your inbox, then reminds you before they charge.</p>
+        <div class="badges">
             <span class="badge soon"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.8-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.8 1.2 1.8 2.6 3.1 2.5 1.3 0 1.7-.8 3.3-.8 1.5 0 1.9.8 3.3.8 1.4 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.6-1-2.6-4.3zM14 5.3c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4z"/></svg><span><small>Coming soon to the</small>App Store</span></span>
             <span class="badge soon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 2.5v19l10-9.5L4 2.5zm11.4 8.2L6.6 2l11.2 6.4-2.4 2.3zm0 2.6 2.4 2.3L6.6 22l8.8-8.7zm3.6-4.2 2.7 1.5c.8.5.8 1.3 0 1.8l-2.7 1.5-2.6-2.4 2.6-2.4z"/></svg><span><small>Coming soon on</small>Google Play</span></span>
           </div>
-          <p class="trust-line"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Read-only Gmail access. Renewless can't send or delete your email.</p>
+      </div>
+        <div class="proof-wrap">
+          <i class="orb o1"><img src="/logos/netflix.svg" alt=""></i>
+          <i class="orb o2"><img src="/logos/spotify.svg" alt=""></i>
+          <i class="orb o3"><img src="/logos/icloud.svg" alt=""></i>
+          <i class="orb o4"><img src="/logos/youtube.svg" alt=""></i>
+          <ul class="proof">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>No bank login</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>One tap, no typing</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Free</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Read-only Gmail</li>
+          </ul>
         </div>
+      </div>
 
-        <div class="hero-art">
-          <div class="device back" data-reveal data-delay="1" aria-hidden="true"><img src="/screens/calendar.jpg" alt="" width="611" height="1300"></div>
-          <!-- Tap-through demo of the real onboarding screens; main.js drives the steps -->
-          <div class="device front stack demo tilt" data-reveal data-delay="2" role="group" aria-label="Try the Renewless onboarding">
-            <img class="on" src="/screens/connect-inbox.jpg" alt="Connect Gmail screen" width="611" height="1300">
-            <img src="/screens/discovering.jpg" alt="Loop looking through billing emails" width="611" height="1300">
-            <img src="/screens/your-subscriptions.jpg" alt="Three subscriptions found" width="611" height="1300">
-            <img src="/screens/ready-to-go.jpg" alt="Ready to go" width="611" height="1300">
-            <img src="/screens/home.jpg" alt="Home with your subscriptions" width="611" height="1300">
-            <button class="tap" type="button" aria-label="Connect Gmail (demo)" data-hint="Tap to try"></button>
+      <!-- Interactive scene: tap Connect Gmail -> the phone moves left, Gmail opens on the right, the
+           search (the backend's query, scan.ts) filters the inbox, and the billing emails fly into the app.
+           Same sample numbers as the prototype's Your subscriptions screen. main.js drives it. -->
+        <div class="demo-head" data-reveal>
+          <p class="kicker"><span class="dot"></span>Live demo</p>
+          <h2>See how it works</h2>
+          <p>Watch one tap turn a Gmail inbox into your subscription list.</p>
+        </div>
+        <ol class="steps" aria-hidden="true">
+          <li>Tap Connect Gmail</li>
+          <li>Renewless searches your Gmail</li>
+          <li>Subscriptions land in the app</li>
+          <li>Save, and reminders are on</li>
+        </ol>
+        <div class="stage" data-state="idle" data-reveal role="group" aria-label="Try it: how Renewless finds subscriptions in Gmail">
+          <!-- The app's own prototype screens (screens/*.jpg); only the taps, covers and notification are HTML -->
+          <div class="phone">
+            <img class="ps ps-connect" src="/screens/connect-inbox.jpg" alt="Renewless: Connect Gmail screen" width="611" height="1300">
+            <img class="ps ps-discover" src="/screens/discovering.jpg" alt="Renewless: looking through your inbox" width="611" height="1300" loading="lazy">
+            <div class="ps ps-results">
+              <img src="/screens/your-subscriptions.jpg" alt="Renewless: 3 subscriptions found" width="611" height="1300" loading="lazy">
+              <i class="cover"></i><i class="cover"></i>
+              <span class="slot"></span><span class="slot"></span><span class="slot"></span>
+            </div>
+            <img class="ps ps-ready" src="/screens/ready-to-go.jpg" alt="Renewless: ready to go" width="611" height="1300" loading="lazy">
+            <button class="go connect" type="button" data-hint="Tap to try" aria-label="Connect Gmail (demo)"></button>
+            <button class="go save" type="button" data-hint="Review, then save" aria-label="Save 3 subscriptions (demo)"></button>
+            <div class="push" aria-hidden="true"><img src="/favicon.svg" alt=""><div><small>RENEWLESS · now</small><strong>Spotify</strong><span>Trial ends tomorrow · then USD 11.99</span></div></div>
+            <button class="replay" type="button">Replay</button>
           </div>
-          <!-- Same title/body format as the app's reminder push (Renewless-backend reminders) -->
-          <div class="notif n1" data-reveal="left" data-delay="3" aria-hidden="true"><img src="/favicon.svg" alt=""><div><small>RENEWLESS · now</small><strong>Duolingo</strong><span>Renews in 2 days · USD 9.99</span></div></div>
-          <svg class="loop-mascot" viewBox="200 200 624 624" aria-hidden="true"><rect x="200" y="200" width="624" height="624" rx="140" fill="#202326"/><path d="M 675.0 670.0 C 677.1 667.1 684.0 658.2 687.6 652.6 C 691.2 647.0 694.2 642.6 696.7 636.4 C 699.2 630.3 700.9 623.5 702.6 615.6 C 704.2 607.6 705.5 596.7 706.6 588.7 C 707.6 580.7 708.2 574.3 708.9 567.4 C 709.5 560.5 710.1 554.0 710.7 547.4 C 711.3 540.8 711.9 534.3 712.4 527.7 C 713.0 521.1 713.5 514.6 714.1 508.0 C 714.7 501.4 715.4 494.5 716.0 487.9 C 716.6 481.2 717.3 474.8 718.0 468.1 C 718.7 461.5 719.3 454.7 720.0 447.9 C 720.7 441.0 721.7 433.6 722.3 426.9 C 722.9 420.1 723.6 415.0 723.7 407.6 C 723.8 400.1 724.0 389.8 722.9 382.0 C 721.7 374.2 719.9 368.1 717.0 360.6 C 714.1 353.1 709.2 343.5 705.3 337.0 C 701.4 330.5 698.3 326.5 693.7 321.4 C 689.2 316.4 683.7 311.0 678.0 306.6 C 672.3 302.1 666.0 298.1 659.6 294.7 C 653.2 291.3 646.0 288.4 639.7 286.1 C 633.4 283.9 629.0 282.3 621.9 281.3 C 614.7 280.2 605.0 279.7 596.6 279.9 C 588.1 280.0 578.5 281.4 571.1 282.1 C 563.8 282.8 559.0 283.4 552.6 284.0 C 546.2 284.6 539.6 285.3 532.9 286.0 C 526.2 286.7 519.3 287.3 512.4 288.0 C 505.5 288.7 498.5 289.3 491.6 290.0 C 484.7 290.7 477.7 291.3 471.0 292.0 C 464.3 292.7 457.7 293.3 451.3 294.0 C 444.9 294.7 438.7 295.2 432.6 296.0 C 426.4 296.8 421.2 297.4 414.6 298.7 C 407.9 300.0 399.0 301.9 392.6 303.9 C 386.1 305.8 381.4 307.7 375.9 310.6 C 370.3 313.4 364.2 317.0 359.1 321.0 C 354.0 325.0 349.4 329.5 345.3 334.4 C 341.2 339.4 337.8 344.8 334.6 350.6 C 331.3 356.3 328.2 362.5 325.7 368.9 C 323.2 375.2 321.1 382.0 319.7 388.9 C 318.3 395.7 317.9 403.3 317.1 410.0 C 316.4 416.7 315.9 422.6 315.3 429.1 C 314.7 435.7 314.1 442.5 313.4 449.1 C 312.8 455.8 312.2 462.2 311.6 469.0 C 310.9 475.8 310.2 482.8 309.6 489.9 C 308.9 496.9 308.4 504.0 307.7 511.1 C 307.1 518.3 306.4 525.6 305.7 532.6 C 305.0 539.5 304.4 545.9 303.7 552.7 C 303.0 559.5 302.5 566.0 301.7 573.3 C 300.9 580.6 299.4 589.0 299.1 596.7 C 298.8 604.4 298.8 612.0 299.9 619.4 C 300.9 626.8 303.2 634.4 305.3 641.0 C 307.4 647.6 309.4 653.1 312.3 659.0 C 315.2 664.9 318.6 670.8 322.7 676.4 C 326.8 682.0 331.5 687.7 336.9 692.7 C 342.2 697.7 348.7 702.5 355.0 706.6 C 361.3 710.7 368.5 714.5 374.7 717.4 C 380.9 720.3 385.7 722.3 392.4 724.0 C 399.1 725.7 408.0 727.1 414.9 727.7 C 421.7 728.3 427.4 728.0 433.6 727.6 C 439.8 727.2 445.8 726.0 452.1 725.3 C 458.5 724.6 465.1 724.1 471.9 723.4 C 478.6 722.8 485.7 722.1 492.7 721.4 C 499.7 720.8 506.6 720.1 513.7 719.4 C 520.8 718.7 528.3 718.0 535.3 717.3 C 542.3 716.6 549.3 715.9 555.7 715.3 C 562.1 714.7 567.6 714.1 573.9 713.6 C 580.1 713.0 589.8 712.3 593.0 712.0 C 596.2 711.7 593.0 712.0 593.0 712.0" stroke="#B9E58C" stroke-width="58" stroke-linecap="round" stroke-linejoin="round" fill="none"/><ellipse class="eye" cx="449.7" cy="500" rx="25" ry="34" fill="#B9E58C"/><ellipse class="eye" cx="573.4" cy="500" rx="25" ry="34" fill="#B9E58C"/></svg>
+
+          <div class="gmail" aria-hidden="true">
+            <div class="gbar"><i></i><i></i><i></i><span>mail.google.com</span></div>
+            <div class="ghead">
+              <img class="gm" src="/logos/gmail.svg" alt="">
+              <div class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="q" data-q="category:purchases OR subject:(receipt OR invoice OR subscription OR renewal OR trial)"></span><b class="caret"></b></div>
+              <small>Sample inbox</small>
+            </div>
+            <ul class="gl">
+              <li class="mail bill" data-tag="Receipt · USD 15.99"><i class="av"><img src="/logos/netflix.svg" alt=""></i><div><strong>Netflix</strong><span>Your Netflix receipt</span><small>Standard plan · USD 15.99</small></div><time>27 Sep</time></li>
+              <li class="mail"><i class="av" style="background:#5b7c99">S</i><div><strong>Sam</strong><span>Dinner on Friday?</span><small>Are you free after 8?</small></div><time>26 Sep</time></li>
+              <li class="mail bill" data-tag="Free trial · then USD 11.99"><i class="av"><img src="/logos/spotify.svg" alt=""></i><div><strong>Spotify</strong><span>Your Premium trial has started</span><small>Free for 1 month, then USD 11.99</small></div><time>1 Oct</time></li>
+              <li class="mail"><i class="av" style="background:#4a7d5c">G</i><div><strong>Google</strong><span>Security alert</span><small>New sign-in on Mac</small></div><time>30 Sep</time></li>
+              <li class="mail"><i class="av" style="background:#3d6a96">in</i><div><strong>LinkedIn</strong><span>You appeared in 9 searches</span><small>See who is looking at your profile</small></div><time>30 Sep</time></li>
+              <li class="mail bill" data-tag="Receipt · USD 2.99"><i class="av"><img src="/logos/icloud.svg" alt=""></i><div><strong>Apple</strong><span>Your receipt from Apple</span><small>iCloud+ 50 GB · USD 2.99</small></div><time>12 Sep</time></li>
+              <li class="mail"><i class="av" style="background:#7a5b8f">A</i><div><strong>Ali</strong><span>Re: weekend plans</span><small>Saturday works for me</small></div><time>28 Sep</time></li>
+              <li class="mail"><i class="av" style="background:#8a6d4b">W</i><div><strong>The Weekly Brief</strong><span>5 stories to read today</span><small>This week in tech and money</small></div><time>29 Sep</time></li>
+            </ul>
+            <p class="gfoot"><span class="found">Searching…</span></p>
+          </div>
+          <p class="sr-only" aria-live="polite"></p>
         </div>
       </div>
     </section>

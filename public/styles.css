@@ -159,7 +159,6 @@ section { padding: 96px 0; scroll-margin-top: 64px; }
 
 /* ---------- Hero ---------- */
 .hero { padding: 64px 0 80px; }
-.hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; }
 .hero h1 { font-size: clamp(36px, 5.8vw, 60px); line-height: 1.08; }
 .hero h1 em { font-style: normal; color: var(--accent); }
 .hero-sub { color: var(--secondary); font-size: 18px; margin-top: 20px; max-width: 32em; }
@@ -183,45 +182,6 @@ section { padding: 96px 0; scroll-margin-top: 64px; }
 .badge small { display: block; color: var(--secondary); font-weight: 400; font-size: 11px; }
 .center .badges { justify-content: center; }
 
-.hero-art { position: relative; height: 620px; }
-.hero-art .device { position: absolute; }
-.hero-art .back { width: 250px; left: 2%; top: 80px; rotate: -9deg; opacity: .7; }
-.hero-art .front { right: 8%; top: 0; animation: float 6s ease-in-out infinite; }
-/* frames crossfade through opacity: keep the back phone from showing through */
-.hero-art .front.stack { background: var(--bg); }
-.hero-art .back::after { display: none; }
-
-.notif {
-  position: absolute;
-  z-index: 2;
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  width: 280px;
-  padding: 12px 14px;
-  border-radius: 18px;
-  background: rgba(37, 40, 44, .97);
-  border: 1px solid var(--hairline);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, .45);
-  font-size: 13px;
-  line-height: 1.4;
-}
-.notif img { width: 36px; height: 36px; border-radius: 9px; }
-.notif strong { display: block; font-weight: 500; font-size: 14px; }
-.notif span { color: var(--secondary); }
-.notif small { display: block; color: var(--secondary); font-size: 10px; letter-spacing: .04em; }
-.hero-art .n1 { left: 0; top: 28px; animation: float 5s ease-in-out infinite .6s; }
-
-.loop-mascot { position: absolute; left: 20%; bottom: 0; width: 92px; height: 92px; z-index: 3; }
-.loop-mascot .eye { transform-box: fill-box; transform-origin: center; animation: eye-blink 5s infinite; }
-@keyframes eye-blink {
-  0%, 92%, 100% { transform: scaleY(1); }
-  95% { transform: scaleY(.1); }
-}
-@keyframes float {
-  0%, 100% { translate: 0 0; }
-  50% { translate: 0 -12px; }
-}
 
 /* ---------- Marquee ---------- */
 .marquee { padding: 28px 0; border-block: 1px solid var(--hairline); overflow: hidden; }
@@ -372,7 +332,6 @@ section { padding: 96px 0; scroll-margin-top: 64px; }
 .js [data-reveal="left"] { translate: -80px 0; rotate: -4deg; }
 .js [data-reveal="right"] { translate: 80px 0; rotate: 4deg; }
 .js [data-reveal].in { opacity: 1; translate: none; rotate: none; }
-.js .hero-art .back[data-reveal].in { rotate: -9deg; opacity: .7; }
 .js [data-delay="1"] { transition-delay: .12s; }
 .js [data-delay="2"] { transition-delay: .24s; }
 .js [data-delay="3"] { transition-delay: .36s; }
@@ -397,10 +356,9 @@ section { padding: 96px 0; scroll-margin-top: 64px; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
-  .hero .wrap, .flow, .row, .row.flip, .showcase { grid-template-columns: 1fr; gap: 40px; }
+  .flow, .row, .row.flip, .showcase { grid-template-columns: 1fr; gap: 40px; }
   .row .device, .flow .device { margin: 0 auto; }
   .row:not(.flip) > :last-child { order: -1; }
-  .hero-art { height: 540px; max-width: 420px; margin: 0 auto; width: 100%; }
   .showcase-phone { display: none; }
   .sc-step { min-height: 0; opacity: 1; gap: 0; padding-bottom: 56px; }
   .sc-step .device { display: block; order: 1; margin: 28px auto 0; width: 250px; }
@@ -409,12 +367,6 @@ section { padding: 96px 0; scroll-margin-top: 64px; }
 }
 @media (max-width: 560px) {
   .bar nav a:not(.btn) { display: none; }
-  .hero-art { height: 480px; }
-  .hero-art .front { width: 220px; right: 0; }
-  .hero-art .back { width: 190px; left: 0; }
-  .notif { width: 236px; }
-  .loop-mascot { display: none; }
-  .hero-art .n1 { display: none; } /* would cover the demo screen on a phone */
   .device { width: 240px; }
 }
 
@@ -431,32 +383,222 @@ section { padding: 96px 0; scroll-margin-top: 64px; }
 .qr img { border-radius: 12px; background: #fff; padding: 8px; box-sizing: content-box; }
 .qr p { max-width: 14em; font-size: 15px; }
 @media (hover: none), (max-width: 900px) { .qr { display: none; } }
-
-/* ---------- Hero tap-through demo (main.js sets the step) ---------- */
-.demo img { opacity: 0; transition: opacity .45s var(--ease); }
-.demo img.on { opacity: 1; }
-.tap {
-  position: absolute; z-index: 2; left: 7.5%; width: 85%; top: var(--top, 80.7%); height: var(--h, 5.6%);
-  border: 0; border-radius: 999px; background: transparent; cursor: pointer; padding: 0;
-  animation: tap-pulse 1.6s ease-out infinite;
-}
-.tap:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
-.tap[hidden] { display: none; }
-.tap::before {
-  content: attr(data-hint); position: absolute; left: 50%; bottom: calc(100% + 10px); translate: -50% 0;
-  white-space: nowrap; background: var(--accent); color: var(--on-accent); font: 500 13px/1 Raleway, sans-serif;
-  padding: 8px 12px; border-radius: 999px; box-shadow: 0 6px 20px rgba(0, 0, 0, .4);
-  animation: hint-bob 1.6s ease-in-out infinite;
-}
-.tap::after {
-  content: ""; position: absolute; left: 50%; bottom: calc(100% + 4px); translate: -50% 0;
-  border: 6px solid transparent; border-top-color: var(--accent); border-bottom: 0;
-  animation: hint-bob 1.6s ease-in-out infinite;
-}
-.tap.replay { left: 50%; width: auto; translate: -50% 0; top: auto; bottom: 14%; height: auto; padding: 10px 18px; background: var(--accent); color: var(--on-accent); font: 500 14px/1 Raleway, sans-serif; animation: none; }
-.tap.replay::before, .tap.replay::after { display: none; }
-.js .tap:not(.ready) { display: none; }
-@keyframes tap-pulse { 0% { box-shadow: 0 0 0 0 rgba(185, 229, 140, .7); } 100% { box-shadow: 0 0 0 14px rgba(185, 229, 140, 0); } }
-@keyframes hint-bob { 50% { transform: translateY(-4px); } }
 .trust-line { display: flex; align-items: center; gap: 8px; margin-top: 16px; color: var(--secondary); font-size: 14px; }
 .trust-line svg { flex: none; color: var(--accent); }
+
+
+/* ---------- Hero: centred copy, then the phone + Gmail scene (main.js sets data-state) ----------
+   idle: phone alone in the middle · open: phone slides left, Gmail opens right and the search runs ·
+   filter: non-billing mail drops out · fly: billing mail flies into the app · results · ready */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.hero-head { text-align: center; }
+.hero-head .hero-sub { margin-left: auto; margin-right: auto; }
+.hero-head .checks { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 28px; }
+.hero-head .badges, .hero-head .trust-line { justify-content: center; }
+.hero-head h1 { font-size: clamp(34px, 4.6vw, 54px); }
+.proof { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; font-size: 15px; font-weight: 500; color: var(--text); }
+.proof li { display: flex; align-items: center; gap: 7px; }
+.proof svg { flex: none; color: var(--accent); }
+.hero-head .hero-sub { margin-top: 14px; font-size: 18px; }
+.hero-head .badges { margin-top: 24px; }
+
+/* Demo steps: the active one fills over its duration (main.js sets .on, .done and --d) */
+.steps { list-style: none; counter-reset: s; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 36px 0 0; padding: 0; color: var(--secondary); font-size: 14px; }
+.steps li {
+  counter-increment: s; padding-top: 14px; transition: color .3s;
+  background: linear-gradient(var(--accent), var(--accent)) no-repeat 0 0 / 0 3px, linear-gradient(var(--hairline), var(--hairline)) no-repeat 0 0 / 100% 3px;
+}
+.steps li::before { content: counter(s, decimal-leading-zero) "  "; color: var(--accent); font-weight: 500; white-space: pre; }
+.steps li.on { color: var(--text); background-size: 100% 3px, 100% 3px; transition: color .3s, background-size var(--d, 3s) linear; }
+.steps li.done { color: var(--text); background-size: 100% 3px, 100% 3px; }
+.stage { position: relative; height: 724px; margin-top: 32px; }
+
+/* Phone: the app's prototype screenshots (bezel included), stacked; % positions are measured on the 611 x 1300 images */
+.phone {
+  position: absolute; z-index: 2; top: 0; left: 50%; width: 340px; aspect-ratio: 611 / 1300; translate: -50% 0;
+  transition: left 1.1s var(--ease), translate 1.1s var(--ease), opacity .5s, scale .5s var(--ease);
+}
+.stage:not([data-state="idle"]) .phone { left: 6%; translate: 0 0; }
+.ps { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; visibility: hidden; transition: opacity .45s, visibility .45s; }
+.ps-results img { width: 100%; height: 100%; }
+.stage[data-state="idle"] .ps-connect,
+.stage[data-state="open"] .ps-discover, .stage[data-state="filter"] .ps-discover,
+.stage[data-state="fly"] .ps-results, .stage[data-state="results"] .ps-results,
+.stage[data-state="ready"] .ps-ready { opacity: 1; visibility: visible; }
+/* the two found rows start hidden under the list card's colour and show as each email lands */
+.cover { position: absolute; left: 8.3%; width: 83.5%; top: 60.5%; height: 11.2%; background: #1f2326; transition: opacity .35s; }
+.cover + .cover { top: 71.9%; height: 11.2%; }
+.cover.off { opacity: 0; }
+.slot { position: absolute; left: 8%; width: 84%; top: 60.4%; height: 11.4%; }
+.slot:nth-of-type(2) { top: 71.8%; }
+.slot:nth-of-type(3) { top: 81%; height: 2%; } /* the third row is below the fold, as in the app */
+
+/* tap targets sit on the screenshot's own buttons */
+.go { position: absolute; left: 7.5%; width: 85%; top: 80.7%; height: 5.6%; padding: 0; border: 0; border-radius: 999px; background: transparent; cursor: pointer; }
+.go.save { top: 86.5%; height: 5.2%; display: none; }
+.stage[data-state="results"] .go.save { display: block; }
+.stage:not([data-state="idle"]) .go.connect { display: none; }
+.go:focus-visible, .replay:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+.go { box-shadow: 0 0 0 3px rgba(185, 229, 140, .6); }
+.go::before {
+  content: attr(data-hint); position: absolute; left: 50%; bottom: calc(100% + 12px); translate: -50% 0; white-space: nowrap;
+  background: var(--text); color: var(--bg); font-size: 12px; padding: 7px 12px; border-radius: 999px; animation: hint-bob 1.6s ease-in-out infinite;
+}
+.go::after { content: ""; position: absolute; left: 50%; bottom: calc(100% + 6px); translate: -50% 0; border: 6px solid transparent; border-top-color: var(--text); border-bottom: 0; animation: hint-bob 1.6s ease-in-out infinite; }
+}
+/* autoplay: a finger tap on the button (main.js adds .tap) */
+.go.tap { animation: tap-press .65s var(--ease); }
+.go.tap::before { content: ""; position: absolute; left: 50%; top: 50%; width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%; background: rgba(255, 255, 255, .55); animation: tap-dot .65s ease-out forwards; }
+@keyframes tap-press { 40% { scale: .96; } }
+@keyframes tap-dot { 0% { scale: .3; opacity: 0; } 30% { scale: 1; opacity: 1; } 100% { scale: 2.2; opacity: 0; } }
+@keyframes hint-bob { 50% { transform: translateY(-4px); } }
+
+.replay { position: absolute; left: 50%; top: calc(100% + 16px); translate: -50% 0; display: none; border: 1px solid var(--control-border); border-radius: 999px; padding: 10px 20px; background: transparent; color: var(--text); font: 500 14px/1 Raleway, sans-serif; cursor: pointer; }
+.replay:hover { border-color: var(--accent); }
+.stage[data-state="ready"] .replay { display: block; }
+.push {
+  position: absolute; z-index: 4; top: 9%; left: 50%; width: 84%; display: flex; gap: 10px; align-items: center;
+  padding: 10px 12px; border-radius: 18px; background: rgba(37, 40, 44, .97); border: 1px solid var(--hairline);
+  font-size: 12px; line-height: 1.35; translate: -50% -20px; opacity: 0; transition: opacity .5s, translate .6s var(--ease);
+}
+.push img { width: 32px; height: 32px; border-radius: 8px; }
+.push strong { display: block; font-weight: 500; font-size: 13px; }
+.push span, .push small { display: block; color: var(--secondary); }
+.push small { font-size: 9px; letter-spacing: .04em; }
+.stage[data-state="ready"] .push { translate: -50% 0; opacity: 1; transition-delay: .9s; }
+
+/* Gmail window */
+.gmail {
+  position: absolute; z-index: 1; top: 64px; right: 0; width: 56%; overflow: hidden;
+  background: var(--card); border: 1px solid var(--hairline); border-radius: 18px; box-shadow: 0 30px 60px rgba(0, 0, 0, .4);
+  opacity: 0; translate: 60px 0; scale: .96; pointer-events: none;
+  transition: opacity .6s .35s, translate .8s .35s var(--ease), scale .8s .35s var(--ease);
+}
+.stage:not([data-state="idle"]) .gmail { opacity: 1; translate: 0 0; scale: 1; }
+.stage[data-state="ready"] .gmail { opacity: .35; transition-delay: 0s; }
+.gbar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: var(--card-2); border-bottom: 1px solid var(--hairline); }
+.gbar i { width: 10px; height: 10px; border-radius: 50%; background: var(--hairline); }
+.gbar span { margin: 0 auto; padding: 3px 14px; border-radius: 999px; background: var(--bg); color: var(--secondary); font-size: 11px; }
+.ghead { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--hairline); }
+.ghead .gm { flex: none; width: 22px; height: 22px; }
+.ghead small { flex: none; color: var(--secondary); font-size: 11px; border: 1px solid var(--hairline); border-radius: 999px; padding: 2px 9px; }
+.search { flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: var(--bg); color: var(--secondary); font-size: 12px; overflow: hidden; }
+.search svg { flex: none; }
+.q { white-space: nowrap; overflow: hidden; color: var(--text); }
+.caret { flex: none; width: 1px; height: 14px; background: var(--accent); animation: blink 1s steps(1) infinite; margin-left: -6px; }
+@keyframes blink { 50% { opacity: 0; } }
+.gl { list-style: none; margin: 0; padding: 4px 0; }
+.mail {
+  position: relative; display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; gap: 12px; align-items: center;
+  padding: 9px 16px; max-height: 76px; font-size: 13px; line-height: 1.35; overflow: hidden;
+  transition: max-height .55s var(--ease), padding .55s var(--ease), opacity .35s, background .4s;
+}
+.mail > div { min-width: 0; }
+.mail strong, .mail span, .mail small { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mail strong { font-weight: 500; font-size: 14px; }
+.mail small { color: var(--secondary); font-size: 12px; }
+.mail time { align-self: start; color: var(--secondary); font-size: 12px; transition: opacity .3s; }
+.av { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--card-2); font-style: normal; font-weight: 500; font-size: 13px; color: #fff; }
+.av img { width: 18px; height: 18px; }
+.mail.out { max-height: 0; padding-top: 0; padding-bottom: 0; opacity: 0; }
+.mail.hit { background: rgba(185, 229, 140, .07); box-shadow: inset 3px 0 var(--accent); }
+.mail.hit time { opacity: 0; }
+.mail.bill::after {
+  content: attr(data-tag); position: absolute; right: 16px; top: 9px; padding: 2px 8px; border-radius: 999px;
+  background: var(--accent); color: var(--on-accent); font-size: 11px; font-weight: 500; opacity: 0; transition: opacity .35s;
+}
+.mail.hit::after { opacity: 1; }
+.mail.sent { opacity: .45; }
+.mail.sent::after { content: "Added to Renewless"; background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+.gfoot { padding: 10px 16px 14px; color: var(--secondary); font-size: 12px; border-top: 1px solid var(--hairline); }
+
+/* A billing email on its way into the app (main.js clones it into the stage) */
+.flyer time { display: none; }
+.flyer { position: absolute; z-index: 5; margin: 0; list-style: none; border-radius: 14px; background: #2a2f2b; box-shadow: 0 18px 40px rgba(0, 0, 0, .45), inset 3px 0 var(--accent); pointer-events: none; }
+
+/* Wide screens: copy on the left, the phone on the right; on Connect the copy fades and the scene takes the full width */
+/* Hero polish: soft glow and dot grid behind the copy, words and points arrive one by one on load */
+.hero { position: relative; isolation: isolate; overflow: hidden; }
+.hero::before {
+  content: ""; position: absolute; z-index: -1; left: 0; right: 0; top: -160px; height: 820px; pointer-events: none;
+  background: radial-gradient(560px 380px at 22% 32%, rgba(185, 229, 140, .13), transparent 70%), radial-gradient(460px 340px at 82% 26%, rgba(185, 229, 140, .08), transparent 70%);
+  animation: glow 12s ease-in-out infinite alternate;
+}
+.hero::after {
+  content: ""; position: absolute; z-index: -1; left: 0; right: 0; top: 0; height: 640px; pointer-events: none;
+  background: radial-gradient(rgba(255, 255, 255, .07) 1px, transparent 1.4px) 0 0 / 26px 26px;
+  mask-image: radial-gradient(70% 80% at 50% 20%, #000, transparent 75%);
+}
+@keyframes glow { to { transform: translate(40px, 30px) scale(1.08); } }
+.kicker { display: inline-flex; align-items: center; gap: 9px; margin: 0 0 22px; padding: 6px 14px 6px 11px; border: 1px solid var(--hairline); border-radius: 999px; background: rgba(255, 255, 255, .03); color: var(--secondary); font-size: 13px; }
+.kicker .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: ping 1.8s ease-out infinite; }
+@keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(185, 229, 140, .6); } 100% { box-shadow: 0 0 0 8px rgba(185, 229, 140, 0); } }
+.hero h1 .w { display: inline-block; animation: word-in .9s var(--ease) calc(.15s + var(--i) * .09s) both; }
+.hero h1 em .w {
+  background: linear-gradient(100deg, var(--accent) 35%, #effbe2 50%, var(--accent) 65%) 0 0 / 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: word-in .9s var(--ease) calc(.15s + var(--i) * .09s) both, shimmer 7s linear 1.6s infinite;
+}
+@keyframes word-in { from { opacity: 0; transform: translateY(26px); filter: blur(8px); } }
+@keyframes shimmer { from { background-position: 100% 0; } to { background-position: -200% 0; } }
+.hero-head > .kicker, .hero-head > .hero-sub, .hero-head > .badges { animation: rise .8s var(--ease) both; }
+.hero-head > .kicker { animation-delay: 0s; }
+.hero-head > .hero-sub { animation-delay: .6s; }
+.hero-head > .badges { animation-delay: .75s; }
+@keyframes bob { 50% { translate: 0 -10px; } }
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } }
+.proof li { animation: rise .7s var(--ease) both; }
+.proof li:nth-child(1) { animation-delay: .8s; } .proof li:nth-child(2) { animation-delay: .9s; } .proof li:nth-child(3) { animation-delay: 1s; } .proof li:nth-child(4) { animation-delay: 1.1s; }
+.proof li path:only-child { stroke-dasharray: 24; animation: draw .5s ease-out both; }
+.proof li:nth-child(1) path { animation-delay: 1.1s; } .proof li:nth-child(2) path { animation-delay: 1.2s; } .proof li:nth-child(3) path { animation-delay: 1.3s; }
+@keyframes draw { from { stroke-dashoffset: 24; } }
+.proof-wrap { position: relative; }
+.orb { display: none; }
+.demo-head { text-align: center; margin-top: 96px; }
+.demo-head .kicker { margin-bottom: 16px; }
+.demo-head h2 { font-size: clamp(28px, 3.2vw, 38px); }
+.demo-head p:last-child { color: var(--secondary); margin-top: 10px; }
+
+/* Wide screens: heading and sub on the left, the points as a list on the right; the scene below */
+@media (min-width: 981px) {
+  .hero-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; }
+  .hero-head { text-align: left; }
+  .hero-head h1 em { display: block; }
+  .hero-head .hero-sub { margin: 20px 0 0; }
+  .hero-head .badges { justify-content: flex-start; }
+  .hero-top { align-items: center; padding-top: 24px; }
+  .proof-wrap { flex: none; margin-right: 32px; animation: rise .9s var(--ease) .5s both; }
+  .proof {
+    flex-direction: column; gap: 16px; margin: 0; padding: 30px 34px; border: 1px solid transparent; border-radius: 22px; font-size: 18px;
+    background: linear-gradient(var(--card), var(--card)) padding-box, linear-gradient(140deg, rgba(185, 229, 140, .7), var(--hairline) 35%, var(--hairline) 70%, rgba(185, 229, 140, .4)) border-box;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, .45), 0 0 60px rgba(185, 229, 140, .06);
+  }
+  /* service logos floating around the card */
+  .orb { position: absolute; z-index: 1; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 16px; background: var(--card-2); border: 1px solid var(--hairline); box-shadow: 0 14px 30px rgba(0, 0, 0, .45); animation: rise .8s var(--ease) both, bob 6s ease-in-out infinite; }
+  .orb img { width: 26px; height: 26px; }
+  .o1 { top: -28px; left: -30px; animation-delay: 1.2s, 1.2s; }
+  .o2 { top: -22px; right: -34px; width: 44px; height: 44px; animation-delay: 1.3s, 2.4s; }
+  .o3 { bottom: -26px; right: -18px; animation-delay: 1.4s, .6s; }
+  .o4 { bottom: -30px; left: 36px; width: 44px; height: 44px; animation-delay: 1.5s, 3s; }
+  .orb + .orb img { width: 24px; height: 24px; }
+  .proof li { gap: 12px; }
+  .proof svg { width: 16px; height: 16px; padding: 5px; box-sizing: content-box; border-radius: 50%; background: rgba(185, 229, 140, .12); }
+}
+@media (max-width: 980px) {
+  /* No room side by side: Gmail opens over the phone, then the mail flies down into it */
+  .stage { height: auto; display: grid; justify-items: center; }
+  .phone, .stage:not([data-state="idle"]) .phone { position: relative; left: auto; translate: none; width: min(340px, 100%); }
+  .stage { padding-bottom: 64px; }
+  .stage[data-state="open"] .phone, .stage[data-state="filter"] .phone { opacity: .25; scale: .94; }
+  .gmail { top: 40px; left: 0; right: 0; width: auto; max-width: 520px; margin: 0 auto; translate: 0 30px; z-index: 3; }
+  .stage[data-state="fly"] .gmail, .stage[data-state="results"] .gmail, .stage[data-state="ready"] .gmail { opacity: 0; transition-delay: 0s; }
+}
+@media (max-width: 560px) {
+  .proof { gap: 8px 16px; font-size: 14px; }
+  .steps { grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 28px; font-size: 13px; }
+  .demo-head { margin-top: 64px; }
+  .stage { margin-top: 40px; }
+  .gmail { top: 20px; }
+  .ghead small { display: none; }
+  .mail { padding: 9px 12px; }
+}
