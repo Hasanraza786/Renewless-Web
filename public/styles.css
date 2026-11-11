@@ -458,3 +458,5 @@ section { padding: 96px 0; scroll-margin-top: 64px; }
 .js .tap:not(.ready) { display: none; }
 @keyframes tap-pulse { 0% { box-shadow: 0 0 0 0 rgba(185, 229, 140, .7); } 100% { box-shadow: 0 0 0 14px rgba(185, 229, 140, 0); } }
 @keyframes hint-bob { 50% { transform: translateY(-4px); } }
+.trust-line { display: flex; align-items: center; gap: 8px; margin-top: 16px; color: var(--secondary); font-size: 14px; }
+.trust-line svg { flex: none; color: var(--accent); }
