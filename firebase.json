@@ -1,0 +1,8 @@
+{
+  "hosting": {
+    "site": "renewlessapp",
+    "public": "public",
+    "ignore": ["og-source.html", "**/.*"],
+    "trailingSlash": true
+  }
+}

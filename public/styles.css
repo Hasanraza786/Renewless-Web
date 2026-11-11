@@ -178,7 +178,8 @@ section { padding: 96px 0; scroll-margin-top: 64px; }
   text-decoration: none;
   transition: border-color .25s, transform .25s var(--ease), background .25s;
 }
-.badge:hover { border-color: var(--accent); background: var(--card); transform: translateY(-3px); }
+.badge.soon { cursor: default; }
+.badge:not(.soon):hover { border-color: var(--accent); background: var(--card); transform: translateY(-3px); }
 .badge small { display: block; color: var(--secondary); font-weight: 400; font-size: 11px; }
 .center .badges { justify-content: center; }
 
@@ -422,3 +423,9 @@ section { padding: 96px 0; scroll-margin-top: 64px; }
   .frames img:not(:first-child) { display: none; }
   .flow-steps li:first-child { border-color: var(--accent); background: var(--card); }
 }
+
+/* QR: only where a phone camera is the second device (desktop) */
+.qr { display: flex; align-items: center; gap: 16px; margin-top: 24px; text-align: left; }
+.qr img { border-radius: 12px; background: #fff; padding: 8px; box-sizing: content-box; }
+.qr p { max-width: 14em; font-size: 15px; }
+@media (hover: none), (max-width: 900px) { .qr { display: none; } }

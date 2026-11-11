@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#151719">
+  <meta name="robots" content="noindex">
+  <title>Get Renewless</title>
+  <link rel="canonical" href="https://renewlessapp.com/">
+  <!-- Firebase also serves the site on *.web.app; send those visitors to the real domain -->
+  <script>if (/\.(web\.app|firebaseapp\.com)$/.test(location.hostname)) location.replace('https://renewlessapp.com' + location.pathname + location.search + location.hash)</script>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/styles.css">
+  <!-- Target of the landing-page QR code. Before publishing: replace APP_STORE_ID with the numeric Apple ID. -->
+  <script>
+    const ua = navigator.userAgent
+    const ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)
+    if (ios) location.replace('https://apps.apple.com/app/idAPP_STORE_ID')
+    else if (/Android/.test(ua)) location.replace('https://play.google.com/store/apps/details?id=com.renewless')
+  </script>
+</head>
+<body>
+  <header class="bar">
+    <a href="/" class="wordmark"><img src="/favicon.svg" alt="" width="28" height="28">Renewless</a>
+  </header>
+
+  <main class="doc">
+    <h1>Get Renewless</h1>
+    <p>Choose your store:</p>
+    <ul>
+      <li><a href="https://apps.apple.com/app/idAPP_STORE_ID">App Store (iPhone)</a></li>
+      <li><a href="https://play.google.com/store/apps/details?id=com.renewless">Google Play (Android)</a></li>
+    </ul>
+  </main>
+</body>
+</html>
