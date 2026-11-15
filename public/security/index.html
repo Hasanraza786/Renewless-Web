@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#151719">
-  <meta name="description" content="How Renewless protects your account, your Gmail access and your data, and the providers that help run it.">
+  <meta name="description" content="How Renewless protects your account, your inbox access and your data, and the providers that help run it.">
   <title>Security · Renewless</title>
   <link rel="canonical" href="https://renewlessapp.com/security/">
   <!-- Firebase also serves the site on *.web.app; send those visitors to the real domain -->
@@ -24,12 +24,13 @@
 
     <p>Renewless reads billing emails and stores subscription details, so protecting that data is part of the product. This page explains how. For what we collect and why, see the <a href="/privacy/">Privacy Policy</a>.</p>
 
-    <h2>Gmail access</h2>
+    <h2>Inbox access</h2>
     <ul>
-      <li>Renewless asks Google only for <strong>read-only</strong> access (<code>gmail.readonly</code>). It cannot send, change or delete mail.</li>
+      <li>Renewless asks only for <strong>read-only</strong> access: <code>gmail.readonly</code> from Google, <code>Mail.Read</code> from Microsoft for Outlook. It cannot send, change or delete mail.</li>
       <li>It searches for billing emails only, and keeps receipt details and attachments, never the full email.</li>
-      <li>Your Gmail access token is stored <strong>encrypted (AES-256-GCM)</strong> on our server and never sent to the app.</li>
-      <li>Disconnecting an inbox stops scanning and asks Google to revoke the grant. The stored token is deleted once Google confirms; if it does not, the token stays encrypted and is never used while the inbox is disconnected. You can also remove access from your <a href="https://myaccount.google.com/permissions">Google account</a>.</li>
+      <li>Your inbox access token is stored <strong>encrypted (AES-256-GCM)</strong> on our server and never sent to the app.</li>
+      <li>Disconnecting a Gmail inbox stops scanning and asks Google to revoke the grant. The stored token is deleted once Google confirms; if it does not, the token stays encrypted and is never used while the inbox is disconnected. You can also remove access from your <a href="https://myaccount.google.com/permissions">Google account</a>.</li>
+      <li>Disconnecting an Outlook inbox stops scanning and deletes the stored token. Microsoft has no revoke call for Renewless, so you can also remove it in your <a href="https://account.microsoft.com/">Microsoft account</a>.</li>
     </ul>
 
     <h2>Your account</h2>
@@ -51,7 +52,7 @@
     <ul>
       <li>All traffic between the app and our servers is encrypted with HTTPS.</li>
       <li>Every request checks that the data belongs to the signed-in account.</li>
-      <li>Deleting your account deletes all your data at once. Backup copies are removed within 30 days. Only a one-way hash of each scanned inbox address and the date of its last scan are kept for one year, to prevent abuse of the free Gmail scan.</li>
+      <li>Deleting your account deletes all your data at once. Backup copies are removed within 30 days. Only a one-way hash of each scanned inbox address and the date of its last scan are kept for one year, to prevent abuse of the free inbox scan.</li>
     </ul>
 
     <h2>Providers we use</h2>
@@ -63,6 +64,7 @@
           <tr><td>Google Cloud</td><td>Servers and database</td><td>Account and subscription data</td></tr>
           <tr><td>Firebase (Google)</td><td>File storage and push notifications</td><td>Receipt attachments, notification tokens</td></tr>
           <tr><td>Google Gemini API</td><td>Reading billing emails and AI chat</td><td>Relevant email text, chat messages and uploads</td></tr>
+          <tr><td>Microsoft Graph (Outlook)</td><td>Reading billing emails from a connected Outlook inbox</td><td>Billing emails in that inbox</td></tr>
           <tr><td>Apple Push Notification service</td><td>Reminders on iPhone</td><td>Notification token and reminder text</td></tr>
           <tr><td>Google (Gmail)</td><td>Sign-up and reset codes, sent from info.renewless@gmail.com</td><td>Email address and code</td></tr>
         </tbody>
