@@ -435,10 +435,11 @@ section { padding: 96px 0; scroll-margin-top: 64px; }
 .slot:nth-of-type(3) { top: 81%; height: 2%; } /* the third row is below the fold, as in the app */
 
 /* tap targets sit on the screenshot's own buttons */
-.go { position: absolute; left: 7.5%; width: 85%; top: 80.7%; height: 5.6%; padding: 0; border: 0; border-radius: 999px; background: transparent; cursor: pointer; }
+.go { position: absolute; left: 7.3%; width: 85.4%; top: 73.8%; height: 5.7%; padding: 0; border: 0; border-radius: 999px; background: transparent; cursor: pointer; }
 .go.save { top: 86.5%; height: 5.2%; display: none; }
 .stage[data-state="results"] .go.save { display: block; }
-.stage:not([data-state="idle"]) .go.connect { display: none; }
+.go.outlook { top: 80.7%; }
+.stage:not([data-state="idle"]) .go.connect, .stage:not([data-state="idle"]) .go.outlook { display: none; }
 .go:focus-visible, .replay:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) {
 .go { box-shadow: 0 0 0 3px rgba(185, 229, 140, .6); }
@@ -447,6 +448,7 @@ section { padding: 96px 0; scroll-margin-top: 64px; }
   background: var(--text); color: var(--bg); font-size: 12px; padding: 7px 12px; border-radius: 999px; animation: hint-bob 1.6s ease-in-out infinite;
 }
 .go::after { content: ""; position: absolute; left: 50%; bottom: calc(100% + 6px); translate: -50% 0; border: 6px solid transparent; border-top-color: var(--text); border-bottom: 0; animation: hint-bob 1.6s ease-in-out infinite; }
+.go.outlook::before, .go.outlook::after { content: none; } /* one hint is enough; it would cover the Gmail button */
 }
 /* autoplay: a finger tap on the button (main.js adds .tap) */
 .go.tap { animation: tap-press .65s var(--ease); }

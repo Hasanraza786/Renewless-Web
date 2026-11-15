@@ -51,7 +51,7 @@ if (!reduce && matchMedia('(hover: hover) and (pointer: fine)').matches) {
   }
 }
 
-// Hero scene: tap Connect Gmail -> the phone slides left and Gmail opens; the search filters the inbox;
+// Hero scene: tap Connect Gmail (or Outlook) -> the phone slides left and the inbox opens; the search filters it;
 // the billing emails fly into the app's list; tap Save -> ready, and a reminder arrives.
 const stage = document.querySelector('.stage')
 if (stage) {
@@ -74,6 +74,19 @@ if (stage) {
     if (i === n) li.style.setProperty('--d', ms + 'ms')
   })
   const say = text => { live.textContent = text }
+  // The same sample inbox, shown as Gmail or Outlook. Outlook search is by subject only, like the backend's Outlook scan.
+  const host = stage.querySelector('.gbar span'), logo = stage.querySelector('.gm')
+  const providers = {
+    gmail: { name: 'Gmail', host: 'mail.google.com', logo: '/logos/gmail.svg', q: q.dataset.q },
+    outlook: { name: 'Outlook', host: 'outlook.live.com', logo: '/logos/outlook.svg', q: 'subject:(receipt OR invoice OR subscription OR renewal OR trial)' },
+  }
+  steps.forEach(li => { li.dataset.t = li.textContent })
+  let p = providers.gmail
+  const use = key => {
+    p = providers[key]
+    host.textContent = p.host; logo.src = p.logo
+    steps.forEach(li => { li.textContent = li.dataset.t.replace('Gmail', p.name) })
+  }
   const rect = el => {
     const a = el.getBoundingClientRect(), s = stage.getBoundingClientRect()
     return { left: a.left - s.left, top: a.top - s.top, width: a.width, height: a.height }
@@ -102,7 +115,7 @@ if (stage) {
     mails.forEach(m => m.classList.remove('out', 'hit', 'sent'))
     covers.forEach(c => c.classList.remove('off'))
     q.textContent = ''; found.textContent = 'Searching…'
-    set('idle'); step(-1)
+    use('gmail'); set('idle'); step(-1)
   }
 
   // A tap ripple on a button, so the autoplay reads as someone using the app
@@ -111,12 +124,12 @@ if (stage) {
     return alive()
   }
 
-  const start = async (id = ++run) => {
+  const start = async (id = ++run, key = 'gmail') => {
     const alive = () => id === run
-    set('open'); step(1, 5600); say('Gmail opens. Renewless searches for billing emails.')
+    use(key); set('open'); step(1, 5600); say(p.name + ' opens. Renewless searches for billing emails.')
     await sleep(1200); if (!alive()) return
     // type the search the backend runs (Renewless-backend scan.ts)
-    const text = q.dataset.q
+    const text = p.q
     for (let i = 1; i <= text.length; i += reduce ? text.length : 2) {
       q.textContent = text.slice(0, i); q.scrollLeft = q.scrollWidth
       await sleep(22); if (!alive()) return
@@ -162,6 +175,7 @@ if (stage) {
   }
 
   connect.addEventListener('click', () => start())
+  stage.querySelector('.go.outlook').addEventListener('click', () => start(undefined, 'outlook'))
   save.addEventListener('click', () => { run++; saved() })
   stage.querySelector('.replay').addEventListener('click', () => { run++; reset(); if (!reduce) play() })
   reset()
