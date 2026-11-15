@@ -2,7 +2,7 @@
   "hosting": {
     "site": "renewlessapp",
     "public": "public",
-    "ignore": ["og-source.html", "**/.*"],
+    "ignore": ["og-source.html", "**/.DS_Store"],
     "trailingSlash": true
   }
 }
