@@ -7,17 +7,11 @@
   <meta name="robots" content="noindex">
   <title>Get Renewless</title>
   <link rel="canonical" href="https://renewlessapp.com/">
-  <!-- Firebase also serves the site on *.web.app; send those visitors to the real domain -->
-  <script>if (/\.(web\.app|firebaseapp\.com)$/.test(location.hostname)) location.replace('https://renewlessapp.com' + location.pathname + location.search + location.hash)</script>
+  <script src="/head.js"></script>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="/styles.css">
-  <!-- Target of the landing-page QR code. Before publishing: replace APP_STORE_ID with the numeric Apple ID. -->
-  <script>
-    const ua = navigator.userAgent
-    const ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)
-    if (ios) location.replace('https://apps.apple.com/app/idAPP_STORE_ID')
-    else if (/Android/.test(ua)) location.replace('https://play.google.com/store/apps/details?id=com.renewless')
-  </script>
+  <!-- Target of the landing-page QR code. Before publishing: replace APP_STORE_ID in get.js and below with the numeric Apple ID. -->
+  <script src="/get/get.js"></script>
 </head>
 <body>
   <header class="bar">

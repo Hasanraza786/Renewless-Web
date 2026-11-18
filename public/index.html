@@ -29,12 +29,10 @@
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
   }
   </script>
-  <!-- Firebase also serves the site on *.web.app; send those visitors to the real domain -->
-  <script>if (/\.(web\.app|firebaseapp\.com)$/.test(location.hostname)) location.replace('https://renewlessapp.com' + location.pathname + location.search + location.hash)</script>
+  <script src="/head.js"></script>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preload" href="/fonts/Raleway-Medium.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="stylesheet" href="/styles.css?v=20261116">
-  <script>document.documentElement.classList.add('js')</script>
   <script src="/main.js?v=20261116" defer></script>
 </head>
 <body>
